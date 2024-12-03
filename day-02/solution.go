@@ -2,10 +2,10 @@ package main
 
 import (
 	"aoc2024/common"
+	_ "embed"
 	"fmt"
 	"math"
-	"path/filepath"
-	"runtime"
+	"strings"
 )
 
 func isSafe(levels ...int) bool {
@@ -68,20 +68,11 @@ func getBadLevels(levels []int) int {
 	return badLevels
 }
 
-func main() {
-	_, filePath, _, ok := runtime.Caller(0)
-	if !ok {
-		fmt.Println("Error: Unable to determine current file location")
-		return
-	}
-	dirPath := filepath.Dir(filePath)
-	inputPath := filepath.Join(dirPath, "input.txt")
+//go:embed input.txt
+var input string
 
-	lines := common.ReadFile(inputPath)
-	if lines == nil {
-		fmt.Println("Error: Unable to read input file")
-		return
-	}
+func main() {
+	lines := strings.Split(input, "\n")
 
 	safeReports := 0
 	dampenerSafe := 0
