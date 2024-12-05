@@ -16,9 +16,9 @@ func main() {
 	rulesRe := regexp.MustCompile(`\d+\|\d+`)
 	rulesMatches := rulesRe.FindAllString(input, -1)
 
-	rulesMap := make(map[string]struct{})
+	rulesMap := make(map[string]bool)
 	for _, rule := range rulesMatches {
-		rulesMap[rule] = struct{}{}
+		rulesMap[rule] = true
 	}
 
 	updatesRe := regexp.MustCompile(`\d+,`)
