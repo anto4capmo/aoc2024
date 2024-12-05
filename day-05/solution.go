@@ -26,16 +26,14 @@ func main() {
 	firstUpdate := updatesMatches[0]
 
 	updatesSection := input[firstUpdate[0]:]
-	updates := strings.Split(strings.TrimSpace(updatesSection), "\n")
+	updates := strings.Split(updatesSection, "\n")
 
 	updateNumbers := make([][]int, len(updates))
 	for i, update := range updates {
-		updateNumberStrings := strings.Split(strings.TrimSpace(update), ",")
+		updateNumberStrings := strings.Split(update, ",")
 		for _, updateNumberString := range updateNumberStrings {
-			val, err := strconv.Atoi(strings.TrimSpace(updateNumberString))
-			if err == nil {
-				updateNumbers[i] = append(updateNumbers[i], val)
-			}
+			val, _ := strconv.Atoi(updateNumberString)
+			updateNumbers[i] = append(updateNumbers[i], val)
 		}
 	}
 
